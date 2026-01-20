@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ComposableMap, Geographies, Geography, Marker } from "react-simple-maps";
 import { X, Globe, Zap, ExternalLink } from 'lucide-react';
 import Pic from '../assets/picture.jpg';
+import { Link } from 'react-router-dom';
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
@@ -14,7 +15,7 @@ const regions = [
         phase: 'Phase 1 & 2',
         location: 'Chinese Consulate',
         detailsUrl: 'https://example.com/ny-details',
-        desc: 'On International Human Rights Day 2025, China Action conducted a powerful visual intervention, projecting tributes to Liu Xiaobo and prisoners of conscience. We transformed the space into a global call for justice, demanding the immediate release of all political prisoners in China.' },
+        desc: 'On International Human Rights Day 2025, We conducted a powerful visual intervention, projecting tributes to Liu Xiaobo and prisoners of conscience. We transformed the space into a global call for justice, demanding the immediate release of all political prisoners in China.' },
     {
         id: 'berlin',
         name: 'Berlin',
@@ -22,7 +23,7 @@ const regions = [
         phase: 'Phase 3',
         location: 'Chinese Embassy',
         detailsUrl: 'https://example.com/berlin-details',
-        desc: "On New Year's Day 2026, China Action launched a strategic projection in Berlin to mark the start of a new year of resistance. By illuminating the city with tributes to Liu Xiaobo and prisoners of conscience, we amplified the global demand for justice and the unconditional release of all political prisoners in China."}
+        desc: "On New Year's Day 2026, We launched a strategic projection in Berlin to mark the start of a new year of resistance. Shown Liu Xiaobo and prisoners of conscience, we amplified the global demand for justice and the unconditional release of all political prisoners in China."}
 ];
 
 const Hero = () => {
@@ -163,7 +164,7 @@ const Hero = () => {
                             exit={{ scale: 0.5, opacity: 0 }}
                             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
                             style={{ backgroundColor: themeColor }}
-                            className="relative w-full max-w-[420px] rounded-[2.5rem] p-10 shadow-2xl flex flex-col border border-white/50 overflow-hidden"
+                            className="relative w-full max-w-[420px] max-h-[97vh] rounded-[2.5rem] p-10 shadow-2xl flex flex-col border border-white/50 overflow-hidden"
                         >
                             {/* 关闭按钮 - 提高层级防止被图片遮挡 */}
                             <button
@@ -197,16 +198,14 @@ const Hero = () => {
                                     </div>
                                 </div>
 
-                                {/* View Details 按钮 - 变矮 */}
-                                <a
-                                    href={selectedRegion.detailsUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+
+                                <Link
+                                    to="/news"
                                     className="flex items-center justify-center gap-2 w-full py-2.5 bg-slate-900 text-white rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-slate-800 transition-all shadow-lg group"
                                 >
                                     View Details
                                     <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                                </a>
+                                </Link>
                             </div>
                         </motion.div>
                     </div>
