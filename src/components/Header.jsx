@@ -31,14 +31,15 @@ const Header = () => {
 
                 {/* 中间导航链接 */}
                 <ul className="hidden md:flex gap-10 text-[11px] uppercase tracking-[0.2em] text-slate-500 font-bold items-center">
+
                     <li>
-                        <ScrollLink to="hero" smooth={true} duration={500} offset={-100} className="cursor-pointer hover:text-slate-900 transition-colors">
-                            Mission
+                        <ScrollLink to="about" smooth={true} duration={500} offset={-80} className="cursor-pointer hover:text-slate-900 transition-colors">
+                            Actions
                         </ScrollLink>
                     </li>
                     <li>
-                        <ScrollLink to="about" smooth={true} duration={500} offset={-80} className="cursor-pointer hover:text-slate-900 transition-colors">
-                            Initiatives
+                        <ScrollLink to="hero" smooth={true} duration={500} offset={-100} className="cursor-pointer hover:text-slate-900 transition-colors">
+                            Mission
                         </ScrollLink>
                     </li>
                     <li>
@@ -62,6 +63,7 @@ const Header = () => {
                     >
                         Donate
                     </button>
+
                 </div>
 
             </div>

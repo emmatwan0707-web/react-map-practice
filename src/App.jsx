@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import NewsPage from './components/NewsPage';
 import DonatePage from './components/Donate.jsx';
 import JoinPage from './components/JoinPage.jsx';
+import Mission from './components/Mission.jsx';
 
 const App = () => {
     return (
@@ -13,9 +14,15 @@ const App = () => {
                 <Header />
                 <Routes>
 
-                    <Route path="/" element={<Hero />} />
-                    <Route path="/join" element={<JoinPage />} />
+                    <Route path="/" element={
+                        <>
+                            <Hero />
+                            <Mission />
 
+                        </>
+                    } />
+
+                    <Route path="/join" element={<JoinPage />} />
                     <Route path="/news" element={<NewsPage />} />
                     <Route path="/donate" element={<DonatePage />} />
                 </Routes>
