@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import NewsPage from './components/NewsPage';
+import DonatePage from './components/Donate.jsx';
+
 const App = () => {
     return (
         <Router>
@@ -12,6 +14,7 @@ const App = () => {
                     <Route path="/" element={<Hero />} />
 
                     <Route path="/news" element={<NewsPage />} />
+                    <Route path="/donate" element={<DonatePage />} />
                 </Routes>
             </div>
         </Router>
