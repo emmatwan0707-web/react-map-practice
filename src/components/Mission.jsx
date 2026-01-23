@@ -71,7 +71,7 @@ const StatBox = ({ value, label }) => (
     <div className="group cursor-default">
         <div className="flex items-baseline gap-1">
             <span className="text-7xl font-black italic tracking-tighter group-hover:text-[#8BA4C1] transition-colors">{value}</span>
-            <span className="text-3xl font-black text-slate-900">+</span>
+            <span className="text-3xl font-black text-slate-300 ml-2">+</span>
         </div>
         <div className="w-8 h-1 bg-slate-900 mt-4 mb-2 group-hover:w-20 transition-all duration-500" />
         <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">{label}</span>
