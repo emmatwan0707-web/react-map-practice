@@ -9,28 +9,22 @@ const Header = () => {
     const location = useLocation();
     const { t, i18n } = useTranslation();
     const isZh = i18n.language === 'zh';
+
+    // 激活状态的样式
     const activeStyle = "text-slate-900 border-b-2 border-slate-900 pb-1";
 
-    const handleNavClick = (targetId) => {
-
-        if (location.pathname === '/') {
-
-            scroller.scrollTo(targetId, {
-                duration: 500,
-                smooth: true,
-                offset: -80,
-            });
-        }
-
-        else {
+    // 统一处理跨页面跳转逻辑
+    const handleNavClickWrapper = (targetId) => {
+        if (location.pathname !== '/') {
             navigate('/');
+            // 延迟确保首页加载后再执行滚动
             setTimeout(() => {
                 scroller.scrollTo(targetId, {
                     duration: 500,
                     smooth: true,
                     offset: -80,
                 });
-            }, 100);
+            }, 200);
         }
     };
 
@@ -45,7 +39,6 @@ const Header = () => {
             <div className="relative max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
                 <div className="flex items-center gap-3">
-                    {/* Logo 点击回顶部：你可以保持 Link，也可以加一个 onClick 强制滚回顶部 */}
                     <Link
                         to="/"
                         onClick={() => {
@@ -63,49 +56,22 @@ const Header = () => {
                 </div>
 
                 <ul className={`hidden md:flex absolute left-1/2 -translate-x-1/2 gap-10 text-[11px] uppercase text-slate-500 font-bold items-center ${isZh ? 'tracking-widest' : 'tracking-[0.2em]'}`}>
-
-                    <li>
-                        <ScrollLink
-                            to="actions"
-                            onClick={() => handleNavClick('actions')} // 现在这个函数在首页也会工作了
-                            spy={true}
-                            activeClass={activeStyle}
-                            smooth={true}
-                            duration={500}
-                            offset={-80}
-                            className="cursor-pointer hover:text-slate-900 transition-colors"
-                        >
-                            {t('nav.actions')}
-                        </ScrollLink>
-                    </li>
-                    <li>
-                        <ScrollLink
-                            to="mission"
-                            onClick={() => handleNavClick('mission')}
-                            spy={true}
-                            activeClass={activeStyle}
-                            smooth={true}
-                            duration={500}
-                            offset={-100}
-                            className="cursor-pointer hover:text-slate-900 transition-colors"
-                        >
-                            {t('nav.mission')}
-                        </ScrollLink>
-                    </li>
-                    <li>
-                        <ScrollLink
-                            to="purpose"
-                            onClick={() => handleNavClick('purpose')}
-                            spy={true}
-                            activeClass={activeStyle}
-                            smooth={true}
-                            duration={500}
-                            offset={-60}
-                            className="cursor-pointer hover:text-slate-900 transition-colors"
-                        >
-                            {t('nav.purpose')}
-                        </ScrollLink>
-                    </li>
+                    {['actions', 'mission', 'purpose'].map((id) => (
+                        <li key={id}>
+                            <ScrollLink
+                                to={id}
+                                spy={true}
+                                smooth={true}
+                                duration={500}
+                                offset={-80} // 统一 offset 解决下划线判定 Bug
+                                activeClass={activeStyle}
+                                onClick={() => handleNavClickWrapper(id)}
+                                className="cursor-pointer hover:text-slate-900 transition-colors"
+                            >
+                                {t(`nav.${id}`)}
+                            </ScrollLink>
+                        </li>
+                    ))}
                 </ul>
 
                 <div className="flex items-center gap-6 sm:gap-8">
@@ -129,7 +95,6 @@ const Header = () => {
                         {i18n.language === 'en' ? 'CN' : 'EN'}
                     </button>
                 </div>
-
             </div>
         </nav>
     );
